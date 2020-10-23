@@ -1,7 +1,5 @@
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
-
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static org.junit.Assert.assertEquals;
@@ -46,5 +44,29 @@ public class RentalTest {
         var rental = new Rental(new NewReleaseMovie("Dummy"), 2);
         assertEquals(6.0, rental.getPrice(), 0);
         assertEquals(2, rental.getPoints());
+    }
+
+    @Test
+    void testCanCreateOneToThreeDaysChildrensMovieRental() {
+        var title = new Faker().book().title();
+        var numberOfDays = ThreadLocalRandom.current().nextInt(1, 4);
+        var rental = new Rental(new ChildrensMovie(title), numberOfDays);
+        assertEquals(title, rental.getTitle());
+        assertEquals(1.5, rental.getPrice(), 0);
+        assertEquals(1, rental.getPoints());
+    }
+
+    @Test
+    void testCanCreateFourDaysChildrensMovieRental() {
+        var rental = new Rental(new ChildrensMovie("Dummy"), 4);
+        assertEquals(3.0, rental.getPrice(), 0);
+        assertEquals(1, rental.getPoints());
+    }
+
+    @Test
+    void testCanCreateFiveDaysChildrensMovieRental() {
+        var rental = new Rental(new ChildrensMovie("Dummy"), 5);
+        assertEquals(4.5, rental.getPrice(), 0);
+        assertEquals(1, rental.getPoints());
     }
 }

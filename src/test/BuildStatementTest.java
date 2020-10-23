@@ -62,6 +62,26 @@ public class BuildStatementTest {
         Assert.assertThat(build_statement.execute(), CoreMatchers.is(expected));
     }
 
+    @Test
+    void testCanBuildStatementEndToEnd() {
+        var build_statement = new BuildStatement("Andy Toend");
+        var regularRental = new Rental(new RegularMovie("The Regular"), 4);
+        var newRelease = new Rental(new NewReleaseMovie("The New"), 6);
+        var childrens = new Rental(new ChildrensMovie("Child's Play"), 4);
+
+        build_statement.addRental(regularRental);
+        build_statement.addRental(newRelease);
+        build_statement.addRental(childrens);
+
+        String expected = "Rental Record for Andy Toend\n" +
+                "   The Regular  £5.0\n" +
+                "   The New  £18.0\n" +
+                "   Child's Play  £3.0\n" +
+                "You owe £26.0\n" +
+                "You earned 4 frequent renter points";
+        Assert.assertThat(build_statement.execute(), CoreMatchers.is(expected));
+    }
+
     private class RentalStub implements IRental {
 
         private int points;
