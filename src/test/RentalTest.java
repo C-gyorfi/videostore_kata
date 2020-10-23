@@ -31,4 +31,20 @@ public class RentalTest {
         assertEquals(6.5, rental.getPrice(), 0);
         assertEquals(1, rental.getPoints());
     }
+
+    @Test
+    void testCanCreateOneDayNewReleaseRental() {
+        var title = new Faker().book().title();
+        var rental = new Rental(new NewReleaseMovie(title), 1);
+        assertEquals(title, rental.getTitle());
+        assertEquals(3.0, rental.getPrice(), 0);
+        assertEquals(1, rental.getPoints());
+    }
+
+    @Test
+    void testCanCreateTwoDaysNewReleaseRental() {
+        var rental = new Rental(new NewReleaseMovie("Dummy"), 2);
+        assertEquals(6.0, rental.getPrice(), 0);
+        assertEquals(2, rental.getPoints());
+    }
 }
