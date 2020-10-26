@@ -1,5 +1,3 @@
-import java.rmi.MarshalledObject;
-
 class Rental implements IRental {
     private Movie movie;
     private int numberOfDays;

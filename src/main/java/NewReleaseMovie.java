@@ -1,13 +1,11 @@
+import lombok.Getter;
+
 public class NewReleaseMovie implements Movie {
+    @Getter
     private String title;
 
     public NewReleaseMovie(String title) {
         this.title = title;
-    }
-
-    @Override
-    public String getTitle() {
-        return this.title;
     }
 
     @Override

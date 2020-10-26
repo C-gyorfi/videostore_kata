@@ -1,13 +1,11 @@
+import lombok.Getter;
+
 public class RegularMovie implements Movie {
+    @Getter
     private String title;
 
     public RegularMovie(String title) {
         this.title = title;
-    }
-
-    @Override
-    public String getTitle() {
-        return this.title;
     }
 
     @Override
