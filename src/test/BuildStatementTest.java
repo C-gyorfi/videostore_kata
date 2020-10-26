@@ -65,9 +65,9 @@ public class BuildStatementTest {
     @Test
     void testCanBuildStatementEndToEnd() {
         var build_statement = new BuildStatement("Andy Toend");
-        var regularRental = new Rental(new RegularMovie("The Regular"), 4);
-        var newRelease = new Rental(new NewReleaseMovie("The New"), 6);
-        var childrens = new Rental(new ChildrensMovie("Child's Play"), 4);
+        var regularRental = new RentalImpl(new RegularMovie("The Regular"), 4);
+        var newRelease = new RentalImpl(new NewReleaseMovie("The New"), 6);
+        var childrens = new RentalImpl(new ChildrensMovie("Child's Play"), 4);
 
         build_statement.addRental(regularRental);
         build_statement.addRental(newRelease);
@@ -82,7 +82,7 @@ public class BuildStatementTest {
         Assert.assertThat(build_statement.execute(), CoreMatchers.is(expected));
     }
 
-    private class RentalStub implements IRental {
+    private class RentalStub implements Rental {
 
         private int points;
         private double price;

@@ -1,25 +1,7 @@
-class Rental implements IRental {
-    private Movie movie;
-    private int numberOfDays;
+interface Rental {
+    public double getPrice();
 
-    public Rental(Movie movie, int numberOfDays) {
-        this.movie = movie;
-        this.numberOfDays = numberOfDays;
-    }
+    public int getPoints();
 
-    @Override
-    public double getPrice() {
-        return this.movie.getPrice(this.numberOfDays);
-    }
-
-    @Override
-    public int getPoints() {
-        return this.movie.getPoints(this.numberOfDays);
-    }
-
-    @Override
-    public String getTitle() {
-        return this.movie.getTitle();
-    }
+    public String getTitle();
 }
-
